@@ -228,8 +228,8 @@ enable_services() {
     ;;
   esac
   systemctl enable nginx
-  systemctl enable mariadb
-  systemctl start mariadb
+  systemctl enable mysql
+  systemctl start mysql
 }
 
 selinux_allow() {
@@ -292,11 +292,12 @@ dep_install() {
 
     # Install dependencies
     install_packages "php8.3 php8.3-{cli,common,gd,mysql,mbstring,bcmath,xml,fpm,curl,zip} \
-      mariadb-common mariadb-server mariadb-client \
+      mysql-common mysql-server mysql-client \
       nginx \
       redis-server \
       zip unzip tar \
       git cron"
+
 
     [ "$CONFIGURE_LETSENCRYPT" == true ] && install_packages "certbot python3-certbot-nginx"
 
